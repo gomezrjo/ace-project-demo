@@ -1,0 +1,41 @@
+---
+swagger: "2.0"
+info:
+  title: "ms01"
+  version: "1.0.0"
+  description: "ms01"
+paths:
+  /policies/{id}:
+    get:
+      operationId: "getId"
+      responses:
+        "200":
+          description: "The operation was successful."
+          schema:
+            $ref: "#/definitions/ms01body"
+      produces:
+      - "application/json"
+      description: "Retrieve id"
+      parameters:
+      - required: true
+        name: "id"
+        in: "path"
+        type: "string"
+basePath: "/ms01/v1"
+definitions:
+  ms01body:
+    type: "object"
+    properties:
+      policyId:
+        type: "string"
+      issueDate:
+        type: "string"
+      expirationDate:
+        type: "string"
+      policyType:
+        type: "string"
+      customerId:
+        type: "string"
+host: "horizon-ms01-http-cp4i-ace.jgrocp48cp4i20214-dcd557ed086a97d77c2297a53c025612-0000.sjc04.containers.appdomain.cloud:80"
+schemes:
+- "http"

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmMSLMapping.msgnode="ComIbmMSLMapping.msgnode" xmlns:ComIbmRESTRequest.msgnode="ComIbmRESTRequest.msgnode" xmlns:ComIbmRoute.msgnode="ComIbmRoute.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="getPolicyId.subflow" nsPrefix="getPolicyId.subflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="SQUARE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="getPolicyId" bundleName="getPolicyId" pluginId="stp"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/stp/icons/full/obj16/getPolicyId.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/stp/icons/full/obj30/getPolicyId.gif"/>
+    <composition>
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input_1" location="27,99">
+        <translation xmi:type="utility:TranslatableString" key="Input" bundleName="getPolicyId" pluginId="stp"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output_1" location="880,110">
+        <translation xmi:type="utility:TranslatableString" key="Output" bundleName="getPolicyId" pluginId="stp"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRESTRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="106,99" definitionFile="ms01.yaml" definitionType="swagger_20" operationName="getId" acceptCompressedResponses="true">
+        <translation xmi:type="utility:ConstantString" string="getId"/>
+        <parameters name="id" expression="$LocalEnvironment/REST/Input/Parameters/policyId"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMSLMapping.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="197,99" mappingExpression="msl://{default}#getPolicyId_Mapping">
+        <translation xmi:type="utility:ConstantString" string="Mapping"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRESTRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="473,154" definitionFile="ms02.yaml" definitionType="swagger_20" operationName="getId" acceptCompressedResponses="true">
+        <translation xmi:type="utility:ConstantString" string="getId1"/>
+        <parameters name="id" expression="$LocalEnvironment/Variables/ms01body/customerId"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRoute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="298,103">
+        <outTerminals terminalNodeID="Match" dynamic="true" label="Match"/>
+        <translation xmi:type="utility:ConstantString" string="Route"/>
+        <filterTable filterPattern="$LocalEnvironment/Variables/ms01body/policyType = 'XYZ'" routingOutputTerminal="Match"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMSLMapping.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="566,102" mappingExpression="msl://{default}#getPolicyId_Mapping1">
+        <translation xmi:type="utility:ConstantString" string="Mapping1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRESTRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="658,106" definitionFile="ms03.yaml" definitionType="swagger_20" operationName="getPolicyId" acceptCompressedResponses="true">
+        <translation xmi:type="utility:ConstantString" string="getPolicyId"/>
+        <parameters name="policyId" expression="$LocalEnvironment/Variables/ms01body/policyId"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMSLMapping.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="779,106" mappingExpression="msl://{default}#getPolicyId_Mapping2">
+        <translation xmi:type="utility:ConstantString" string="Mapping2"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRESTRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="470,50" definitionFile="ms02.yaml" definitionType="swagger_20" operationName="getId" acceptCompressedResponses="true">
+        <translation xmi:type="utility:ConstantString" string="getId2"/>
+        <parameters name="id" expression="$LocalEnvironment/Variables/ms01body/customerId"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_1" sourceNode="InTerminal.Input_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_4" sourceTerminalName="Match" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="OutTerminal.Output_1" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.default" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_14" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard>
+      <stickyNote location="7,14">
+        <body xmi:type="utility:ConstantString" string="Start micro-flow&#xA;as a REST API"/>
+      </stickyNote>
+      <stickyNote location="81,166">
+        <body xmi:type="utility:ConstantString" string="Invoke REST API #1&#xA;using input data c"/>
+      </stickyNote>
+      <stickyNote location="170,11">
+        <body xmi:type="utility:ConstantString" string="Save response from &#xA;REST API #1 for &#xA;later in the flow"/>
+      </stickyNote>
+      <stickyNote location="257,162">
+        <body xmi:type="utility:ConstantString" string="Route to the rigth &#xA;REST API based on&#xA;Response from REST&#xA;API #1 (aka IF)"/>
+      </stickyNote>
+      <stickyNote location="430,224">
+        <body xmi:type="utility:ConstantString" string="Invoke REST API #2&#xA;(either A or B) using&#xA;data from REST API #1"/>
+      </stickyNote>
+      <stickyNote location="556,15">
+        <body xmi:type="utility:ConstantString" string="Save response from&#xA;REST API #2 for &#xA;later in the flow"/>
+      </stickyNote>
+      <stickyNote location="624,178">
+        <body xmi:type="utility:ConstantString" string="Invoke REST API #3&#xA;using data from &#xA;REST API #1"/>
+      </stickyNote>
+      <stickyNote location="729,12">
+        <body xmi:type="utility:ConstantString" string="Build response using&#xA;data from REST API #1,&#xA;#2 and #3, including &#xA;some transformations"/>
+      </stickyNote>
+      <stickyNote location="851,178">
+        <body xmi:type="utility:ConstantString" string="Send response&#xA;back"/>
+      </stickyNote>
+    </stickyBoard>
+  </eClassifiers>
+</ecore:EPackage>

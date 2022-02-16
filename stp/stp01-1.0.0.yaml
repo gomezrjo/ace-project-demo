@@ -1,0 +1,54 @@
+---
+swagger: "2.0"
+info:
+  title: "stp01"
+  version: "1.0.0"
+  description: "stp01"
+paths:
+  /flows/{policyId}:
+    get:
+      operationId: "getPolicyId"
+      responses:
+        "200":
+          description: "The operation was successful."
+          schema:
+            $ref: "#/definitions/stp01body"
+      produces:
+      - "application/json"
+      description: "Retrieve policyId"
+      parameters:
+      - required: true
+        name: "policyId"
+        in: "path"
+        type: "string"
+basePath: "/stp01/v1"
+definitions:
+  stp01body:
+    type: "object"
+    properties:
+      customer:
+        type: "object"
+        properties:
+          customerId:
+            type: "string"
+          customerName:
+            type: "string"
+      policy:
+        type: "object"
+        properties:
+          policyId:
+            type: "string"
+          policyType:
+            type: "string"
+          expirationDate:
+            type: "string"
+      claims:
+        type: "object"
+        properties:
+          numClaims:
+            type: "integer"
+          totalAmount:
+            type: "integer"
+host: "joels-macbook-pro.local:7800"
+schemes:
+- "http"

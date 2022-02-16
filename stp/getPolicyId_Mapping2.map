@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0" xmlns:map="default">
+    <inlinedXMLSchema><![CDATA[<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:Q1="http://www.ibm.com/iib/msl/json">
+    <xsd:import namespace="http://www.ibm.com/iib/msl/json" schemaLocation="/ms02.yaml"/>
+    <xsd:import namespace="http://www.ibm.com/iib/msl/json" schemaLocation="/ms01.yaml"/>
+    <xsd:element name="ms02body" type="Q1:ms02body"/>
+    <xsd:element name="ms01body" type="Q1:ms01body"/>
+</xsd:schema>]]></inlinedXMLSchema>
+    <input path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/JsonDomainMsg.xsd" var="var3"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/ms03.yaml" var="var"/>
+    <input inlinedXMLSchema="true" path="../schema_0.xsd" var="var4"/>
+    <output path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/JsonDomainMsg.xsd" var="var1"/>
+    <output derivedFrom="MB:JSON_schema_in_swagger_document" path="/stp01-1.0.0.yaml" var="var2"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="io" uri="http://www.ibm.com/iib/msl/json"/>
+        <namespace kind="extension" prefix="fn" uri="http://www.w3.org/2005/xpath-functions"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="getPolicyId_Mapping2">
+        <input namespace="http://www.ibm.com/iib/msl/json" path="$var3/mb:msg(JSON,assembly,JSON,LocalEnvironment,Properties)" var="ComIbmMessageAssembly_JSON">
+            <cast derivedFrom="MB:JSON_TYPE" path="$ComIbmMessageAssembly_JSON/JSON/Data/type('anyType')" qualifier="{http://www.ibm.com/iib/msl/json}ms03body" ref="var"/>
+            <cast castType="userDefined" path="$ComIbmMessageAssembly_JSON/LocalEnvironment/Variables/any" qualifier="ms01body" ref="var4"/>
+            <cast castType="userDefined" path="$ComIbmMessageAssembly_JSON/LocalEnvironment/Variables/any" qualifier="ms02body" ref="var4"/>
+        </input>
+        <output namespace="http://www.ibm.com/iib/msl/json" path="$var1/mb:msg(JSON,assembly,JSON,Properties)" var="ComIbmMessageAssembly_JSON1">
+            <cast derivedFrom="MB:JSON_operation_response" path="$ComIbmMessageAssembly_JSON1/JSON/Data/type('anyType')" qualifier="{http://www.ibm.com/iib/msl/json}stp01body" ref="var2"/>
+        </output>
+        <move>
+            <input path="$ComIbmMessageAssembly_JSON/Properties"/>
+            <output path="$ComIbmMessageAssembly_JSON1/Properties"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_JSON/LocalEnvironment/Variables/ms02body[1]/customerId"/>
+            <output path="$ComIbmMessageAssembly_JSON1/JSON/spath('Data',2)/customer/customerId"/>
+        </move>
+        <function ref="fn:concat">
+            <input path="$ComIbmMessageAssembly_JSON/LocalEnvironment/Variables/ms02body[1]/firstName" var="firstName"/>
+            <input path="$ComIbmMessageAssembly_JSON/LocalEnvironment/Variables/ms02body[1]/lastName" var="lastName"/>
+            <output path="$ComIbmMessageAssembly_JSON1/JSON/spath('Data',2)/customer/customerName"/>
+            <param name="string1" value="$firstName"/>
+            <param name="string2" value="' '"/>
+            <param name="string3" value="$lastName"/>
+        </function>
+        <move>
+            <input path="$ComIbmMessageAssembly_JSON/LocalEnvironment/Variables/ms01body[1]/policyId"/>
+            <output path="$ComIbmMessageAssembly_JSON1/JSON/spath('Data',2)/policy/policyId"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_JSON/LocalEnvironment/Variables/ms01body[1]/policyType"/>
+            <output path="$ComIbmMessageAssembly_JSON1/JSON/spath('Data',2)/policy/policyType"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_JSON/LocalEnvironment/Variables/ms01body[1]/expirationDate"/>
+            <output path="$ComIbmMessageAssembly_JSON1/JSON/spath('Data',2)/policy/expirationDate"/>
+        </move>
+        <function ref="fn:count">
+            <input path="$ComIbmMessageAssembly_JSON/JSON/spath('Data',2)/items/Item" var="Item"/>
+            <output path="$ComIbmMessageAssembly_JSON1/JSON/spath('Data',2)/claims/numClaims"/>
+            <param name="item" value="$Item"/>
+        </function>
+        <expression>
+            <input path="$ComIbmMessageAssembly_JSON/JSON/spath('Data',2)/items/Item" var="Item1"/>
+            <output path="$ComIbmMessageAssembly_JSON1/JSON/spath('Data',2)/claims/totalAmount"/>
+            <code lang="xpath">fn:sum($Item1/claimAmount)</code>
+        </expression>
+    </mappingDeclaration>
+</mappingRoot>

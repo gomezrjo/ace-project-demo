@@ -1,0 +1,39 @@
+---
+swagger: "2.0"
+info:
+  title: "ms02"
+  version: "1.0.0"
+  description: "ms02"
+paths:
+  /customers/{id}:
+    get:
+      operationId: "getId"
+      responses:
+        "200":
+          description: "The operation was successful."
+          schema:
+            $ref: "#/definitions/ms02body"
+      produces:
+      - "application/json"
+      description: "Retrieve id"
+      parameters:
+      - required: true
+        name: "id"
+        in: "path"
+        type: "string"
+basePath: "/ms02/v1"
+definitions:
+  ms02body:
+    type: "object"
+    properties:
+      customerId:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      dob:
+        type: "string"
+host: "horizon-ms02-http-cp4i-ace.jgrocp48cp4i20214-dcd557ed086a97d77c2297a53c025612-0000.sjc04.containers.appdomain.cloud:80"
+schemes:
+- "http"

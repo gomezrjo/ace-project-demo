@@ -1,0 +1,42 @@
+---
+swagger: "2.0"
+info:
+  title: "ms03"
+  version: "1.0.0"
+  description: "ms03"
+paths:
+  /claims/{policyId}:
+    get:
+      operationId: "getPolicyId"
+      responses:
+        "200":
+          description: "The operation was successful."
+          schema:
+            $ref: "#/definitions/ms03body"
+      produces:
+      - "application/json"
+      description: "Retrieve policyId"
+      parameters:
+      - required: true
+        name: "policyId"
+        in: "path"
+        type: "string"
+basePath: "/ms03/v1"
+definitions:
+  ms03body:
+    type: "object"
+    properties:
+      items:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            claimId:
+              type: "string"
+            claimDate:
+              type: "string"
+            claimAmount:
+              type: "integer"
+host: "horizon-ms03-http-cp4i-ace.jgrocp48cp4i20214-dcd557ed086a97d77c2297a53c025612-0000.sjc04.containers.appdomain.cloud:80"
+schemes:
+- "http"
