@@ -35,7 +35,7 @@
         <translation xmi:type="utility:ConstantString" string="getPolicyId"/>
         <parameters name="policyId" expression="$LocalEnvironment/Variables/ms01body/policyId"/>
       </nodes>
-      <nodes xmi:type="ComIbmMSLMapping.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="779,106" mappingExpression="msl://{default}#getPolicyId_Mapping2">
+      <nodes xmi:type="ComIbmMSLMapping.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="836,108" mappingExpression="msl://{default}#getPolicyId_Mapping2">
         <translation xmi:type="utility:ConstantString" string="Mapping2"/>
       </nodes>
       <nodes xmi:type="ComIbmRESTRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="470,50" definitionFile="ms02.yaml" definitionType="swagger_20" operationName="getId" acceptCompressedResponses="true">
