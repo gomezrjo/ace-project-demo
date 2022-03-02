@@ -9,7 +9,7 @@
       <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input_1" location="27,99">
         <translation xmi:type="utility:TranslatableString" key="Input" bundleName="getPolicyId" pluginId="stp"/>
       </nodes>
-      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output_1" location="936,110">
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output_1" location="1070,112">
         <translation xmi:type="utility:TranslatableString" key="Output" bundleName="getPolicyId" pluginId="stp"/>
       </nodes>
       <nodes xmi:type="ComIbmRESTRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="106,99" definitionFile="ms01.yaml" definitionType="swagger_20" operationName="getId" acceptCompressedResponses="true">
